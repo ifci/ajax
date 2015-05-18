@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <style type="text/css">
+        *{margin:0;padding: 0;}
+        body{padding: 20px;}
+        .code_box{width:500px;}
+        h3{color: #0051FF;}
+        p,article{font-size: 16px;font-family: 'microsoft yahei';text-indent: 2em;}
+        article:first-letter{font-weight: bold;color: #E46A05;font-style: italic;padding:0 .3em 0 0;margin-left: -.8em;}
+    </style>
+
+
+</head>
+<body>
+<pre class="codes">
+ajaxStart()和ajaxStop()方法是绑定Ajax事件。ajaxStart()方法用于在Ajax请求发出前触发函数，ajaxStop()方法用于在Ajax请求完成后触发函数。它们的调用格式为：
+
+$(selector).ajaxStart(function())和$(selector).ajaxStop(function())
+
+其中，两个方法中括号都是绑定的函数，当发送Ajax请求前执行ajaxStart()方法绑定的函数，请求成功后，执行ajaxStop ()方法绑定的函数。
+</pre>
+<div id="divtest">
+    <div class="title">
+        <span class="fl">加载一段文字</span>
+                <span class="fr">
+                    <input id="btnShow" type="button" value="加载" />
+                </span>
+    </div>
+    <ul>
+        <li id="divload"></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#divload").ajaxStart(function(){
+            $(this).html("正在请求数据...");
+        });
+        $("#divload").ajaxStop(function(){
+            $(this).html("数据请求完成！");
+        });
+        $("#btnShow").bind("click", function () {
+            var $this = $(this);
+            $.ajax({
+                url: "demo/sport.php",
+                dataType: "json",
+                success: function (data) {
+                    $this.attr("disabled", "true");
+                    $("ul").append("<li>我的名字叫：" + data.name + "</li>");
+                    $("ul").append("<li>所有人都对我说：" + data.say + "</li>");
+                }
+            });
+        })
+    });
+</script>
+<script type="text/javascript" src="laycode/laycode.js"></script>
+<script type="text/javascript">
+    $('.codes').laycode({
+        skin: 2,
+        title: "九口袋前端",
+        by: false
+    });
+</script>
+
+</body>
+</html>

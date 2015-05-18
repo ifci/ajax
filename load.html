@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <style type="text/css">
+        *{margin:0;padding: 0;}
+        body{padding: 20px;}
+        .code_box{width:500px;}
+        h3{color: #0051FF;}
+        p,article{font-size: 16px;font-family: 'microsoft yahei';text-indent: 2em;}
+        article:first-letter{font-weight: bold;color: #E46A05;font-style: italic;padding:0 .3em 0 0;margin-left: -.8em;}
+    </style>
+
+
+</head>
+<body>
+<pre class="codes">
+使用load()方法通过Ajax请求加载服务器中的数据，并把返回的数据放置到指定的元素中，它的调用格式为：
+load(url,[data],[callback])
+参数url为加载服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后，执行的回调函数.</pre>
+<div id="divtest">
+    <div class="title">
+        <span class="fl">我最爱吃的水果</span>
+            <span class="fr">
+                <input id="btnShow" type="button" value="加载" />
+            </span>
+    </div>
+    <ul></ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnShow").bind("click", function () {
+            var $this = $(this);
+            $("ul").html("<img src='Images/Loading.gif' alt=''/>")
+                    .load('demo/load.html', function() {
+                        $this.attr("disabled", "true");
+                    });
+        })
+    });
+</script>
+<script type="text/javascript" src="laycode/laycode.js"></script>
+<script type="text/javascript">
+    $('.codes').laycode({
+        skin: 2,
+        title: "九口袋前端",
+        by: false
+    });
+</script>
+
+</body>
+</html>

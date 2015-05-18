@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <style type="text/css">
+        *{margin:0;padding: 0;}
+        body{padding: 20px;}
+        .code_box{width:500px;}
+        h3{color: #0051FF;}
+        p,article{font-size: 16px;font-family: 'microsoft yahei';text-indent: 2em;}
+        article:first-letter{font-weight: bold;color: #E46A05;font-style: italic;padding:0 .3em 0 0;margin-left: -.8em;}
+    </style>
+
+
+</head>
+<body>
+<pre class="codes">
+使用serialize()方法可以将表单中有name属性的元素值进行序列化，生成标准URL编码文本字符串，直接可用于ajax请求，它的调用格式如下：
+
+$(selector).serialize()
+
+其中selector参数是一个或多个表单中的元素或表单元素本身。
+</pre>
+<div id="divtest">
+    <div class="title">
+        <span class="fl">我的个人资料</span>
+                <span class="fr">
+                    <input id="btnAction" type="button" value="序列化" />
+                </span>
+    </div>
+    <form action="">
+        <ul>
+            <li>姓名：<input name="Text1" type="text" size="12" /></li>
+            <li>
+                <select name="Select1">
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+            </li>
+            <li><input name="Checkbox1" type="checkbox" />资料是否可见 </li>
+            <li id="litest"></li>
+        </ul>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnAction").bind("click", function () {
+            $('#litest').html($('form').serialize());
+        })
+    })
+</script>
+<script type="text/javascript" src="laycode/laycode.js"></script>
+<script type="text/javascript">
+    $('.codes').laycode({
+        skin: 2,
+        title: "九口袋前端",
+        by: false
+    });
+</script>
+
+</body>
+</html>

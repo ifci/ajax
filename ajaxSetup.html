@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <style type="text/css">
+        *{margin:0;padding: 0;}
+        body{padding: 20px;}
+        .code_box{width:500px;}
+        h3{color: #0051FF;}
+        p,article{font-size: 16px;font-family: 'microsoft yahei';text-indent: 2em;}
+        article:first-letter{font-weight: bold;color: #E46A05;font-style: italic;padding:0 .3em 0 0;margin-left: -.8em;}
+    </style>
+
+
+</head>
+<body>
+<pre class="codes">
+使用ajaxSetup()方法可以设置Ajax请求的一些全局性选项值，设置完成后，后面的Ajax请求将不需要再添加这些选项值，它的调用格式为：
+
+jQuery.ajaxSetup([options])或$.ajaxSetup([options])
+
+可选项options参数为一个对象，通过该对象设置Ajax请求时的全局选项值。
+</pre>
+<div id="divtest">
+    <div class="title">
+        <span class="fl">奇偶性和是否大于0</span>
+                <span class="fr">
+                    <input id="btnShow_1" type="button" value="验证1" />
+                    <input id="btnShow_2" type="button" value="验证2" />
+                </span>
+    </div>
+    <ul>
+        <li>请求输入一个数字
+            <input id="txtNumber" type="text" size="12" />
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.ajaxSetup({
+            dataType: "text",
+            type: "post",
+            success: function(data){
+                $("ul").append("<li>你输入的<b>  "
+                + $("#txtNumber").val() + " </b>是<b> "
+                + data + " </b></li>");
+            }
+        });
+        $("#btnShow_1").bind("click", function () {
+            $.ajax({
+                data: { num: $("#txtNumber").val() },
+                url: "demo/check.php"
+            });
+        })
+        $("#btnShow_2").bind("click", function () {
+            $.ajax({
+                data: { num: $("#txtNumber").val() },
+                url: "demo/check_f.php"
+            });
+        })
+    });
+</script>
+<script type="text/javascript" src="laycode/laycode.js"></script>
+<script type="text/javascript">
+    $('.codes').laycode({
+        skin: 2,
+        title: "九口袋前端",
+        by: false
+    });
+</script>
+
+</body>
+</html>

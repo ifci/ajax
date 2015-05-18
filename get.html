@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <style type="text/css">
+        *{margin:0;padding: 0;}
+        body{padding: 20px;}
+        .code_box{width:500px;}
+        h3{color: #0051FF;}
+        p,article{font-size: 16px;font-family: 'microsoft yahei';text-indent: 2em;}
+        article:first-letter{font-weight: bold;color: #E46A05;font-style: italic;padding:0 .3em 0 0;margin-left: -.8em;}
+    </style>
+
+
+</head>
+<body>
+<pre class="codes">
+使用get()方法时，采用GET方式向服务器请求数据，并通过方法中回调函数的参数返回请求的数据，它的调用格式如下：
+
+$.get(url,[callback])
+
+参数url为服务器请求地址，可选项callback参数为请求成功后执行的回调函数。
+</pre>
+<div id="divtest">
+    <div class="title">
+        <span class="fl">我的个人资料</span>
+                <span class="fr">
+                    <input id="btnShow" type="button" value="加载" />
+                </span>
+    </div>
+    <ul></ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnShow").bind("click", function () {
+            var $this = $(this);
+            $.get("demo/sport.php", function(data) {
+                $this.attr("disabled", "true");
+                $("ul").append("<li>我的名字叫：" + data.name + "</li>");
+                $("ul").append("<li>每个人都对我说：" + data.say + "</li>");
+            }, "json");
+        })
+    });
+</script>
+<script type="text/javascript" src="laycode/laycode.js"></script>
+<script type="text/javascript">
+    $('.codes').laycode({
+        skin: 2,
+        title: "九口袋前端",
+        by: false
+    });
+</script>
+
+</body>
+</html>
